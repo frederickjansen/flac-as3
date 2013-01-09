@@ -1,0 +1,8 @@
+*.iml
+*.ipr
+*.iws
+.idea/
+
+bin/
+bin-debug/
+bin-release/
