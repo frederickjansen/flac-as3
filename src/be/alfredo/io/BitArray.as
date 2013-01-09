@@ -83,7 +83,7 @@ package be.alfredo.io
 		public function readBit():Boolean
 		{
 			var byte:uint = this.readUnsignedByte();
-			var val:Boolean = ( ( byte >> ( 8 - _bitPosition ) ) & 0x01 ) == 1 ? true : false;
+			var val:Boolean = ( ( byte >> ( 8 - _bitPosition ) ) & 0x01 ) == 1;
 			
 			// Go back to the start of the byte if we're not reading the last bit
 			if( _bitPosition != 8 )
@@ -107,14 +107,13 @@ package be.alfredo.io
 		 * bitshifts and temporary variables. That logic has been moved
 		 * into this method.
 		 * 
-		 * @param	bits	Amount of bits you want to read.
+		 * @param	length	Amount of bits you want to read.
 		 * @return	val		The resulting uint.
 		 */ 
 		
 		public function readUnsignedBits( length:uint ):uint
 		{
-			var val:uint;
-			var nextByte:uint;
+			var val:uint, nextByte:uint;
 			
 			if( length + _bitPosition <= 9 )
 			{
@@ -161,7 +160,7 @@ package be.alfredo.io
 		 * This method makes use of readUnsignedBits to reads its
 		 * value and adjusts it based on the sign.
 		 * 
-		 * @param	bits	Amount of bits you want to read.
+		 * @param	length	Amount of bits you want to read.
 		 * @return	int		The resulting int.
 		 * @see				readUnsignedBits
 		 */ 
@@ -189,7 +188,7 @@ package be.alfredo.io
 		{
 			var msb:uint	= this.readUnary( 1 );
 			var lsb:uint	= this.readUnsignedBits( parameter );
-			var value:uint	= (msb << parameter) | lsb;
+			var value:int	= (msb << parameter) | lsb;
 			
 			if( value & 1 ) // signed, value next to lsb instead of msb
 			{
