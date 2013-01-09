@@ -19,8 +19,7 @@ package be.alfredo.flac.frame
 				_pcm[i] = data.readSignedBits( bps );
 			}
 			
-			residuals = new Vector.<int>;
-			readEncodedResidual( data, order, frame.blockSize, residuals );
+			residuals = readEncodedResidual( data, order, frame.blockSize );
 			
 			var resLength:uint = residuals.length;
 			

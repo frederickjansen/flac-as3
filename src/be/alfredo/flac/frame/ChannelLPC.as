@@ -28,8 +28,7 @@ package be.alfredo.flac.frame
 				qlpCoeffs[j] = data.readSignedBits( qlpPrecision );
 			}
 			
-			residuals = new Vector.<int>;
-			readEncodedResidual( data, order, frame.blockSize, residuals );
+			residuals = readEncodedResidual( data, order, frame.blockSize );
 			
 			var residualLength:uint = residuals.length;
 			for( i = 0; i < residualLength; i++ )

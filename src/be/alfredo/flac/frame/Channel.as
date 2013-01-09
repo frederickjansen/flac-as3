@@ -82,14 +82,15 @@ package be.alfredo.flac.frame
 		 * @param	data		BitArray containing the data
 		 * @param	order		Order to deduct from the first partition
 		 * @param	blockSize	Samples in one block
-		 * @param	residuals	Vector containing all values used in entropy coding (rice)
-		 */ 
-		protected function readEncodedResidual( data:BitArray, order:uint, blockSize:uint, residuals:Vector.<int> ):void
+         * @return	residuals	Vector containing all values used in entropy coding (rice)
+		 */
+		protected function readEncodedResidual( data:BitArray, order:uint, blockSize:uint ):Vector.<int>
 		{
 			var samplesPerPartition:uint;
 			var riceParameter:uint;
-			var escapeCode:uint;
 			var bps:uint = 0;
+
+            var residuals:Vector.<int> = new Vector.<int>();
 			
 			var codingMethod:uint = data.readUnsignedBits( 2 );
 			var partitionOrder:uint = data.readUnsignedBits( 4 );
@@ -153,6 +154,8 @@ package be.alfredo.flac.frame
 					}
 				}
 			}
+
+            return residuals;
 		}
 	}
 }

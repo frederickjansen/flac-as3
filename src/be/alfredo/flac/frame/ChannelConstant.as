@@ -10,7 +10,7 @@ package be.alfredo.flac.frame
 		 */ 
 		public function ChannelConstant( source:BitArray, frame:Frame, streamInfo:StreamInfo )
 		{
-			var bps:uint = source.readUnsignedBits( frame.bitsPerSample );
+			var bps:uint = source.readSignedBits( frame.bitsPerSample );
 			var length:uint = frame.blockSize;
 			_pcm = new Vector.<int>(frame.blockSize, true);
 			

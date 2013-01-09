@@ -16,7 +16,7 @@ package be.alfredo.flac.frame
 			
 			for( var i:uint = 0; i < bs; i++ )
 			{
-				_pcm[i] = data.readUnsignedBits( bps );
+				_pcm[i] = data.readSignedBits( bps );
 			}
 		}
 	}
